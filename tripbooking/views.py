@@ -49,3 +49,22 @@ def trip_person(request, format=None):
         return Response(response_data)
 
     return Response({"error": "Invalid request method"}, status=400)
+
+@api_view(['GET'])
+def get_person_of_trip(request, trip_name):
+    persons_of_trip = Person.objects.filter(trips__trip_name__contains=trip_name)
+    
+    
+    if persons_of_trip:
+
+        person_serializer = PersonSerializer(persons_of_trip, many=True)
+        response_data = {
+                "trip_name": trip_name,
+                "participants_of_trip": person_serializer.data,
+            }
+
+        return Response(response_data)
+    return Response({"error": f"No participants found for trip '{trip_name}'"}, status=404)
+
+
+    
