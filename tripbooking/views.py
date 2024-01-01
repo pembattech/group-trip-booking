@@ -1,8 +1,5 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import status
-
-from django.shortcuts import HttpResponse
 
 from .serializers import TripSerializer, PersonSerializer
 from .models import Trip, Person
@@ -53,7 +50,6 @@ def trip_person(request, format=None):
 @api_view(['GET'])
 def get_person_of_trip(request, trip_name):
     persons_of_trip = Person.objects.filter(trips__trip_name__contains=trip_name)
-    
     
     if persons_of_trip:
 
