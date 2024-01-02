@@ -1,4 +1,3 @@
-# tripbooking/urls.py
 from django.urls import path
 
 from .views import trip_person, get_person_of_trip

@@ -11,4 +11,4 @@ class TripSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Trip
-        fields = "__all__"
+        fields = ("trip_name",)
